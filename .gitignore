@@ -2,11 +2,9 @@
 __pycache__/
 db.sqlite3
 .DS_Store
-vk.json
 myshop
 test_django
 geekshop/my_test_example.py
-
 for_server.txt
 my_test_example.py
 help
