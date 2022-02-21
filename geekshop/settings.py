@@ -31,7 +31,7 @@ SECRET_KEY = '!803rpv)kc^8*p_b4k(rypzzgc#t&7zhe)&y$%u)#*&o1$7*ad'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
