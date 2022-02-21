@@ -1,0 +1,15 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+
+{% block container %}
+    <div class="h2 text-center head">
+            Создание пользователя
+        </div>
+  <form class="form-horizontal" method="post" action="{% url 'new_admin:user_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input class="form-control" type="submit"  value="Cохранить пользователя" >
+  </form>
+{% endblock %}

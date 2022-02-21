@@ -1,0 +1,4 @@
+{% load static %}
+{% block basket_summary %}
+  <h3>Всего товара {{ user.all_quantity }}, на сумму {{ user.all_sum|floatformat:0 }} рублей.</h3>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="basket_list">
+        {% for i in user_basket %}
+            <div class="basket_record">
+                <img src="/media/{{ i.product.image }}" alt="{{ i.product.short_desc }}">
+                 <span class="category_name">>{{ i.product.category.name }}</span>
+                <span class="product_name">>{{ i.product.name|capfirst }}</span>
+                <span class="product_price">>{{ i.product.price|floatformat:0 }}&nbspрублей</span>
+
+                <input type="number" name="{{ i.pk }}"
+                           min="0" max="{{ i.product.quantity }}"
+                           value="{{ i.quantity }}">
+                <span class="product_cost product_cost{{ i.pk }}">
+                    {% include 'basketapp/includes/product_cost.html' %}
+                </span>
+                <a href="{% url 'basket:basketremove' i.pk %}"
+                       class="btn btn-round">
+                        удалить
+                    </a>
+            </div>
+        {% endfor %}
+        <div class="basket_summary">
+            {% include 'basketapp/includes/basket_summary.html' %}
+        </div>
+        <a href="{% url 'main:index' %}" class="btn btn-round">
+            на главную
+        </a>
+    </div>
+{% endblock %}

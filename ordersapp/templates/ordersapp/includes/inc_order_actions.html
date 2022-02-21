@@ -1,0 +1,23 @@
+{% if user.is_superuser %}
+
+{% else %}
+    {% if object.statys == 'FM' %}
+
+       <button class="btn btn-warning btn-round form-control last">
+           <a href="{% url 'ordersapp:change_status_for_order' object.pk %}">
+               совершить покупку
+           </a>
+       </button>
+       <button class="btn btn-default btn-round form-control last">
+           <a href="{% url 'ordersapp:order_delete' object.pk %}">удалить</a>
+       </button>
+    {% endif %}
+    <button class="btn btn-info btn-round form-control last">
+       <a href="{% url 'ordersapp:orders_list' %}">
+           к списку заказов
+       </a>
+    </button>
+    <button class="btn btn-default btn-round form-control last">
+       <a href="{% url 'main:index' %}">на главную</a>
+    </button>
+{% endif %}

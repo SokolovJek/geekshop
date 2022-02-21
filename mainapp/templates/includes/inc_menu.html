@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% block menu %}
+    <li>
+      <a href="{% url 'main:category' 0 %}" class="{% if pk == 0 %}active{% endif %}">
+        все
+      </a>
+    </li>
+    {% for item in category %}
+      <li>
+        <a href="{% url 'main:category' item.pk %}"
+        class="{% if pk == item.pk %}active{% endif %}">
+          {{ item.name }}
+        </a>
+      </li>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <div class="users_list">
+
+        <a href="{% url 'new_admin:product_create' object_list.first.category.pk %}" class="btn btn-primary new_user">
+            новый продукт
+        </a>
+        {% for product in object_list %}
+            <div class="user_record {% if not product.is_active %}not_active{% endif %}">
+                <img src="/media/{{ product.image|default:'products_images/default.jpg' }}"
+                     alt="{{ category.name }}">
+                <div class="user_role">
+                    <a href="{% url 'new_admin:product_update' product.pk %}"
+                       class="btn btn-primary">
+                        редактировать
+                    </a>
+                    {% if product.is_active %}
+                        <a href="{% url 'new_admin:product_delete' product.pk %}"
+                           class="btn btn-danger">
+                            удалить
+                        </a>
+                    {% else %}
+                        <a style="background-color:chartreuse;" href="{% url 'new_admin:product_delete' product.pk %}"
+                           class="btn btn-danger ">
+                            востановить
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="user_name">
+                    Краткое описание:<br>
+                    <p><strong>{{ product.short_desc }}</strong></p>
+                </div>
+                
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

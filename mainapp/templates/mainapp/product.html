@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'font/font-awesome/css/font-awesome.css' %}">
+</head>
+<body>
+<div>
+    <ul class="menu">
+        <a href="{% url 'mainapp:index' %}">
+            Вернутся на главную
+        </a>
+    </ul>
+</div>
+
+<div class="details-products">
+    <div class="details-slider">
+        <div class="slider-product">
+            <img src="/media/{{ product.image }}">
+        </div>
+        <div class="slider-control">
+            <div class="block">
+                    <div class="text"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="description">
+        <h3 class="big-bold">{{ product.name|capfirst }}</h3>
+        <p class="price"> {{ product.price }} <span>руб</span></p>
+        <a href="{% url 'basket:basketadd' product.pk %}" class="red-button">
+            заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+        <div class="description-text">
+            <p>{{ product.short_desc|capfirst }}</p>
+            <p>{{ product.description|capfirst }}</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

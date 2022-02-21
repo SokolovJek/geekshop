@@ -1,0 +1,33 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block container %}
+  <div class="user_delete">
+    {% if product.is_active %}
+      Уверены, что хотите удалить {{ product.name }}?
+      <form action="{% url 'new_admin:product_delete' product.pk %}"
+            method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="удалить">
+      </form>
+      <button class="btn btn-success">
+        <a href="{% url 'new_admin:product_list' product.category.pk %}">
+          Отмена
+        </a>
+      </button>
+    </div>
+  {% else %}
+      Уверены, что хотите востановить {{ product.name }}?
+        <form action="{% url 'new_admin:product_delete' product.pk %}"
+              method="post">
+          {% csrf_token %}
+          <input style="background-color:chartreuse" class="btn btn-danger" type="submit" value="Востановить">
+        </form>
+        <button class="btn btn-success">
+          <a href="{% url 'new_admin:product_list' product.category.pk %}">
+            Отмена
+          </a>
+        </button>
+      </div>
+  {% endif %}
+{% endblock %}

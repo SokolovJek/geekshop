@@ -1,0 +1,45 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <div class="users_list">
+        <a href="{% url 'new_admin:categories_create' %}" class="btn btn-primary new_user">
+            новая категория
+        </a>
+        {% for category in all_categories %}
+            <div class="user_record {% if not category.is_active %}not_active{% endif %}">
+                <img src="/media/{{ shop_user.avatar|default:'products_images/default.jpg' }}"
+                     alt="{{ category.name }}">
+                <div class="user_role">
+                     <a href="{% url 'new_admin:product_list' category.pk %}"
+                       class="btn btn-primary">
+                        продукты категории
+                    </a>
+                    <a href="{% url 'new_admin:categories_update' category.pk %}"
+                       class="btn btn-primary">
+                        редактировать
+                    </a>
+                    {% if category.is_active %}
+                        <a href="{% url 'new_admin:categories_delete' category.pk %}"
+                           class="btn btn-danger">
+                            удалить
+                        </a>
+                    {% else %}
+                        <a style="background-color:chartreuse;" href="{% url 'new_admin:categories_delete' category.pk %}"
+                           class="btn btn-danger ">
+                            востановить
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="user_name">
+                    Категория:<br>
+                    <p><strong>{{ category.name }}</strong></p>
+                </div>
+                <div>
+                        Описание:<br>
+                    {{ category.description|capfirst }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
